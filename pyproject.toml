@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "vigilant-succotash"
+version = "0.1.0"
+description = ""
+authors = ["gsajko <grzegorz.sajko@protonmail.com>"]
+readme = "README.md"
+packages = [{include = "vigilant_succotash"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
