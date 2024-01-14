@@ -129,7 +129,7 @@ with open("data/processed_docs.pickle", "rb") as f:
     documents = pickle.load(f)
 # %%
 embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-db = lancedb.connect(".lancedb")
+db = lancedb.connect("lancedb")
 
 table = db.create_table(
     "dharma_qa",

@@ -22,7 +22,7 @@ def load_chain():
     llm = HuggingFaceHub(
         repo_id=llm_repo_id, model_kwargs={"temperature": 0.1, "max_length": 256}
     )
-    db_path = Path(".lancedb")
+    db_path = Path("lancedb")
     db = lancedb.connect(db_path)
     table = db.open_table("dharma_qa")
     docsearch = LanceDB(table, embeddings)
