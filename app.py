@@ -33,3 +33,6 @@ else:
 # Initialize LLM chain
 st.write(current_dir)
 st.write("Hello world!")
+
+for item in (current_dir / "lancedb/dharma_qa.lance").iterdir():
+    st.write(item)
