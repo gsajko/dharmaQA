@@ -37,5 +37,5 @@ st.write("Hello world!")
 for item in (current_dir / "lancedb/dharma_qa.lance/data").iterdir():
     st.write(item)
 
-for item in (current_dir / "lancedb/dharma_qa.lance/").iterdir():
-    st.write(item)
+# for item in (current_dir / "lancedb/dharma_qa.lance/").iterdir():
+#     st.write(item)
