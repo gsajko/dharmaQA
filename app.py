@@ -14,7 +14,6 @@ current_dir = Path(__file__).parent.absolute()
 print(current_dir)
 
 
-
 # Print the contents of the current path
 print("Contents:")
 for item in current_dir.iterdir():
@@ -32,3 +31,5 @@ if os.path.exists(dataset_path):
 else:
     print(f"The dataset does not exist at: {dataset_path}")
 # Initialize LLM chain
+st.write(current_dir)
+st.write("Hello world!")
