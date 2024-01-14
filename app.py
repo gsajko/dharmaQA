@@ -1,7 +1,7 @@
 from pathlib import Path
-
+import os
 import streamlit as st
-from pydantic.v1.error_wrappers import ValidationError
+# from pydantic.v1.error_wrappers import ValidationError
 
 from utils import load_chain
 
@@ -21,24 +21,14 @@ for item in current_dir.iterdir():
     print(item)
 # display contents of lancedb directory
 print("Contents of lancedb:")
-for item in (current_dir / "lancedb").iterdir():
+for item in (current_dir / "lancedb/dharma.lance").iterdir():
     print(item)
 
 
+# check if dataset is present
+dataset_path = "mount/src/dharmaqa/lancedb/dharma_qa.lance"
+if os.path.exists(dataset_path):
+    print(f"The dataset exists at: {dataset_path}")
+else:
+    print(f"The dataset does not exist at: {dataset_path}")
 # Initialize LLM chain
-chain = load_chain()
-
-# Chat logic
-query = st.text_input("Ask me anything")
-if query:
-    # Send user's question to our chain
-    try:
-        result = chain.invoke(query)
-    except ValidationError:
-        result = "I don't understand your question."
-
-    response = result
-
-    # Display user question and assistant response
-    st.write(f"User: {query}")
-    st.write(f"Assistant: {response}")
