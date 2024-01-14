@@ -31,11 +31,15 @@ if os.path.exists(dataset_path):
 else:
     print(f"The dataset does not exist at: {dataset_path}")
 # Initialize LLM chain
+st.write("current dir")
 st.write(current_dir)
-st.write("Hello world!")
 
+
+st.write("data dir content")
 for item in (current_dir / "lancedb/dharma_qa.lance/data").iterdir():
     st.write(item)
 
-# for item in (current_dir / "lancedb/dharma_qa.lance/").iterdir():
-#     st.write(item)
+
+st.write("lance dir content")
+for item in (current_dir / "lancedb/dharma_qa.lance/").iterdir():
+    st.write(item)
