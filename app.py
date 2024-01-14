@@ -3,7 +3,7 @@ import os
 import streamlit as st
 # from pydantic.v1.error_wrappers import ValidationError
 
-from utils import load_chain
+# from utils import load_chain
 
 # Configure streamlit page
 st.set_page_config(page_title="Your Dharma Chatbot")
