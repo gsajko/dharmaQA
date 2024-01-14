@@ -34,5 +34,5 @@ else:
 st.write(current_dir)
 st.write("Hello world!")
 
-for item in (current_dir / "lancedb/dharma_qa.lance").iterdir():
+for item in (current_dir / "lancedb/dharma_qa.lance/data").iterdir():
     st.write(item)
