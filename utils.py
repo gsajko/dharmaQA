@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 import streamlit as st
 from langchain.embeddings import HuggingFaceEmbeddings
@@ -21,7 +22,8 @@ def load_chain():
     llm = HuggingFaceHub(
         repo_id=llm_repo_id, model_kwargs={"temperature": 0.1, "max_length": 256}
     )
-    db = lancedb.connect(".lancedb")
+    db_path = Path(".lancedb")
+    db = lancedb.connect(db_path)
     table = db.open_table("dharma_qa")
     docsearch = LanceDB(table, embeddings)
     retriever = docsearch.as_retriever(search_kwargs={"k": 7})
