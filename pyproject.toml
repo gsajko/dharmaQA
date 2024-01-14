@@ -1,15 +1,61 @@
 [tool.poetry]
-name = "vigilant-succotash"
+name = "dharmaQA"
 version = "0.1.0"
 description = ""
 authors = ["gsajko <grzegorz.sajko@protonmail.com>"]
 readme = "README.md"
-packages = [{include = "vigilant_succotash"}]
+# packages = [{include = "dharmaQA"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+langchain = "^0.0.352"
+lancedb = "^0.4.4"
+pandas = "^2.1.4"
+sentence-transformers = "^2.2.2"
+torch="2.1.2" # for sentence-transformers
+# ^^ version fixed to prevent downloading other versions
+
+[tool.poetry.group.ingest.dependencies]
+unstructured = "^0.11.8"
+markdown = "^3.5.1"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.1.13"
+ipykernel = "^6.28.0"
+black = "^23.12.1"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+exclude = '''
+(
+  /(
+      \.eggs
+    | \.git
+    | \.hg
+    | \.mypy_cache
+    | \.nox
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+    | data/fuel_data
+  )/
+)
+'''
+[tool.ruff]
+select = [
+    # Pyflakes
+    "F",
+    # Pycodestyle
+    "E",
+    "W",
+    # isort
+    "I"
+]
