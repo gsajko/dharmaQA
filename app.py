@@ -13,11 +13,16 @@ st.set_page_config(page_title="Your Dharma Chatbot")
 current_dir = Path(__file__).parent.absolute()
 print(current_dir)
 
+
+
 # Print the contents of the current path
 print("Contents:")
 for item in current_dir.iterdir():
     print(item)
-
+# display contents of lancedb directory
+print("Contents of lancedb:")
+for item in (current_dir / "lancedb").iterdir():
+    print(item)
 
 
 # Initialize LLM chain
