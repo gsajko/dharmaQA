@@ -161,3 +161,4 @@ cython_debug/
 
 
 data/md_parts/*.md
+data/processed_docs.pickle
