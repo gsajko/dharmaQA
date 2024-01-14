@@ -21,7 +21,7 @@ for item in current_dir.iterdir():
     print(item)
 # display contents of lancedb directory
 print("Contents of lancedb:")
-for item in (current_dir / "lancedb/dharma.lance").iterdir():
+for item in (current_dir / "lancedb/dharma_qa.lance").iterdir():
     print(item)
 
 
