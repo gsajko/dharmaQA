@@ -1,5 +1,3 @@
-from pathlib import Path
-
 import streamlit as st
 from pydantic.v1.error_wrappers import ValidationError
 
@@ -7,18 +5,6 @@ from utils import load_chain
 
 # Configure streamlit page
 st.set_page_config(page_title="Your Dharma Chatbot")
-
-
-# get current working directory
-current_dir = Path(__file__).parent.absolute()
-print(current_dir)
-
-# Print the contents of the current path
-print("Contents:")
-for item in current_dir.iterdir():
-    print(item)
-
-
 
 # Initialize LLM chain
 chain = load_chain()

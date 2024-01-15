@@ -128,7 +128,8 @@ with open("data/processed_docs.pickle", "wb") as f:
 with open("data/processed_docs.pickle", "rb") as f:
     documents = pickle.load(f)
 # %%
-embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+embeddings = HuggingFaceEmbeddings(model_name="BAAI/bge-small-en-v1.5")
+# %%
 db = lancedb.connect("lancedb")
 
 table = db.create_table(
@@ -147,4 +148,7 @@ table = db.create_table(
 docsearch = LanceDB.from_documents(
     documents=documents, embedding=embeddings, connection=table
 )
+# %%
+
+
 # %%

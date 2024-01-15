@@ -17,7 +17,7 @@ HUGGINGFACEHUB_API_TOKEN = os.environ["HUGGINGFACEHUB_API_TOKEN"]
 
 @st.cache_resource
 def load_chain():
-    embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+    embeddings = HuggingFaceEmbeddings(model_name="BAAI/bge-small-en-v1.5")
     llm_repo_id = "mistralai/Mixtral-8x7B-Instruct-v0.1"
     llm = HuggingFaceHub(
         repo_id=llm_repo_id, model_kwargs={"temperature": 0.1, "max_length": 256}
