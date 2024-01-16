@@ -8,13 +8,13 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-langchain = "^0.0.352"
 lancedb = "^0.4.4"
 pandas = "^2.1.4"
 sentence-transformers = "^2.2.2"
 torch="2.1.2" # for sentence-transformers
 # ^^ version fixed to prevent downloading other versions
 streamlit = "^1.30.0"
+ragatouille = "^0.0.4b2"
 
 [tool.poetry.group.ingest.dependencies]
 unstructured = "^0.11.8"

@@ -5,3 +5,5 @@ data/md_parts/*.md
 data/processed_docs.pickle
 .env
 __pycache__/*
+md_collection.pkl
+.ragatouille/*
