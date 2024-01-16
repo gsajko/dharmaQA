@@ -2,12 +2,12 @@ import os
 from pathlib import Path
 
 import streamlit as st
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.llms import HuggingFaceHub
 from langchain.prompts import PromptTemplate
 from langchain.schema import StrOutputParser
-from langchain.vectorstores import LanceDB
-from langchain_core.runnables import RunnablePassthrough
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.llms import HuggingFaceHub
+from langchain_community.vectorstores import LanceDB
+from langchain_core.runnables import RunnableParallel, RunnablePassthrough
 
 import lancedb
 
@@ -26,7 +26,7 @@ def load_chain():
     db = lancedb.connect(db_path)
     table = db.open_table("dharma_qa")
     docsearch = LanceDB(table, embeddings)
-    retriever = docsearch.as_retriever(search_kwargs={"k": 7})
+    retriever = docsearch.as_retriever(search_kwargs={"k": 3})
 
     # Create system prompt
     template = """
@@ -51,9 +51,15 @@ def load_chain():
 
     prompt = PromptTemplate(template=template, input_variables=["context", "question"])
     rag_chain = (
-        {"context": retriever | format_docs, "question": RunnablePassthrough()}
+        RunnablePassthrough.assign(context=(lambda x: format_docs(x["context"])))
+        # {"context": retriever | format_docs, "question": RunnablePassthrough()}
         | prompt
         | llm
         | StrOutputParser()
     )
-    return rag_chain
+
+    rag_chain_with_source = RunnableParallel(
+        {"context": retriever, "question": RunnablePassthrough()}
+    ).assign(answer=rag_chain)
+
+    return rag_chain_with_source

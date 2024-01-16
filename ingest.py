@@ -138,6 +138,8 @@ table = db.create_table(
         {
             "vector": embeddings.embed_query("Hello World"),
             "text": "Hello World",
+            # "title": "Doc Title", TODO
+            # https://lancedb.github.io/lancedb/notebooks/code_qa_bot/
             "id": "1",
         }
     ],
@@ -151,4 +153,11 @@ docsearch = LanceDB.from_documents(
 # %%
 
 
+# %%
+for k, v in documents[0]:
+    print(k, type(v))
+# %%
+documents[0].metadata
+
+# %%
 # %%
