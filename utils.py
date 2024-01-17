@@ -17,16 +17,19 @@ HUGGINGFACEHUB_API_TOKEN = os.environ["HUGGINGFACEHUB_API_TOKEN"]
 
 @st.cache_resource
 def load_chain():
-    embeddings = HuggingFaceEmbeddings(model_name="BAAI/bge-small-en-v1.5")
+    emb_repo = "BAAI/bge-small-en-v1.5"
+    embeddings = HuggingFaceEmbeddings(model_name=emb_repo)
     llm_repo_id = "mistralai/Mixtral-8x7B-Instruct-v0.1"
+    # llm_repo_id = "NousResearch/Nous-Hermes-2-Mixtral-8x7B-SFT"
+
     llm = HuggingFaceHub(
-        repo_id=llm_repo_id, model_kwargs={"temperature": 0.1, "max_length": 256}
+        repo_id=llm_repo_id, model_kwargs={"temperature": 0.1, "max_length": 180}
     )
     db_path = Path("lancedb")
     db = lancedb.connect(db_path)
     table = db.open_table("dharma_qa")
     docsearch = LanceDB(table, embeddings)
-    retriever = docsearch.as_retriever(search_kwargs={"k": 3})
+    retriever = docsearch.as_retriever(search_kwargs={"k": 4})
 
     # Create system prompt
     template = """
@@ -62,4 +65,4 @@ def load_chain():
         {"context": retriever, "question": RunnablePassthrough()}
     ).assign(answer=rag_chain)
 
-    return rag_chain_with_source
+    return rag_chain_with_source, emb_repo, llm_repo_id

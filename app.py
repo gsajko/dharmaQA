@@ -9,10 +9,18 @@ st.set_page_config(page_title="Your Dharma Chatbot")
 st.title("Your Dharma Chatbot")
 
 # Initialize LLM chain
-chain = load_chain()
+chain, emb_repo, llm_repo = load_chain()
+
+# side bar
+st.sidebar.title("About")
+st.sidebar.info("This is a demo of a chatbot that answers questions about the dharma.")
+st.sidebar.write("Embedding model:")
+st.sidebar.code(f"{emb_repo}", language="text")
+st.sidebar.write("LLM model:")
+st.sidebar.code(f"{llm_repo}", language="markdown")
 
 # Chat logic
-query = st.text_input("Ask me anything about Dharma", "What is attention?")
+query = st.text_input("Ask me anything about Dharma", "How to practice attention?")
 if query:
     # Send user's question to our chain
     try:
