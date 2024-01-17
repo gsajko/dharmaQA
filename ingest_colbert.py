@@ -64,8 +64,8 @@ with open('md_collection.pkl', 'rb') as f:
 RAG = RAGPretrainedModel.from_pretrained("colbert-ir/colbertv2.0")
 
 RAG.index(
-    collection=test_collection,
-    index_name="dharma_colb",
+    collection=test_collection[2],
+    index_name="dharma_colb_test",
     max_document_length=180,
     split_documents=True,
 )
